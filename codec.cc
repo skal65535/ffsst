@@ -64,7 +64,7 @@ int main(int argc, const char* argv[]) {
       check = true;
     } else if (!strcmp(argv[c], "-effort") && c + 1 < argc) {
       effort = atoi(argv[++c]);
-      effort = (effort < 0) ? 0 : (effort > 2) ? 2 : effort;
+      effort = (effort < 0) ? 0 : (effort > 3) ? 3 : effort;
     } else if (!strcmp(argv[c], "-v")) {
       verbose = true;
     } else {
@@ -85,7 +85,7 @@ int main(int argc, const char* argv[]) {
     fprintf(stderr, "Error during processing!\n");
     return 1;
   }
-  printf("output : %lu bytes\n", out.size());
+  printf("==== Output : %lu bytes ====\n", out.size());
 
   if (out_name != nullptr) {
     if (!WriteFile(out, out_name)) return 1;

@@ -24,7 +24,7 @@ if(COMPILER_SUPPORTS_MARCH_NATIVE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
 endif()
 
-add_library(ffsst ffsst.cc)
+add_library(ffsst ffsst.cc dec.cc)
 add_executable(binary codec.cc)
 target_link_libraries (binary LINK_PUBLIC ffsst)
 set_target_properties(binary PROPERTIES OUTPUT_NAME codec)
