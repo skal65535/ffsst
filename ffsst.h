@@ -28,7 +28,7 @@
 namespace ffsst {
 
 extern bool Compress(const std::string input, std::string& output,
-                     int effort = 0);
+                     int effort = 4, bool verbose = false);
 extern bool Decompress(const std::string input, std::string& output);
 
 }  // namespace ffsst
