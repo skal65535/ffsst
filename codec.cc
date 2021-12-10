@@ -38,6 +38,8 @@ bool WriteFile(const std::string& bytes, const char name[]) {
 }  // anonymous namespace
 //------------------------------------------------------------------------------
 
+const int kMaxEffort = 4;
+
 int main(int argc, const char* argv[]) {
   const char* in_name = nullptr;
   const char* out_name = nullptr;
@@ -64,7 +66,7 @@ int main(int argc, const char* argv[]) {
       check = true;
     } else if (!strcmp(argv[c], "-effort") && c + 1 < argc) {
       effort = atoi(argv[++c]);
-      effort = (effort < 0) ? 0 : (effort > 3) ? 3 : effort;
+      effort = (effort < 0) ? 0 : (effort > kMaxEffort) ? kMaxEffort : effort;
     } else if (!strcmp(argv[c], "-v")) {
       verbose = true;
     } else {
