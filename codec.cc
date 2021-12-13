@@ -87,7 +87,8 @@ int main(int argc, const char* argv[]) {
     fprintf(stderr, "Error during processing!\n");
     return 1;
   }
-  printf("==== Output : %lu bytes ====\n", out.size());
+  printf("==== Output : %lu bytes (comp ratio = %.2lf) ====\n",
+         out.size(), 1. * in.size() / out.size());
 
   if (out_name != nullptr) {
     if (!WriteFile(out, out_name)) return 1;
