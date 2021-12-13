@@ -38,13 +38,15 @@ bool WriteFile(const std::string& bytes, const char name[]) {
 }  // anonymous namespace
 //------------------------------------------------------------------------------
 
+const int kMaxEffort = 4;
+
 int main(int argc, const char* argv[]) {
   const char* in_name = nullptr;
   const char* out_name = nullptr;
   bool decompress = false;
   bool check = false;
   bool verbose = false;
-  int effort = 0;
+  int effort = 4;
 
   for (int c = 1; c < argc; ++c) {
     if (!strcmp(argv[c], "-h")) {
@@ -64,7 +66,7 @@ int main(int argc, const char* argv[]) {
       check = true;
     } else if (!strcmp(argv[c], "-effort") && c + 1 < argc) {
       effort = atoi(argv[++c]);
-      effort = (effort < 0) ? 0 : (effort > 3) ? 3 : effort;
+      effort = (effort < 0) ? 0 : (effort > kMaxEffort) ? kMaxEffort : effort;
     } else if (!strcmp(argv[c], "-v")) {
       verbose = true;
     } else {
@@ -80,7 +82,7 @@ int main(int argc, const char* argv[]) {
 
   std::string out;
   const bool ok = decompress ? ffsst::Decompress(in, out)
-                             : ffsst::Compress(in, out, effort);
+                             : ffsst::Compress(in, out, effort, verbose);
   if (!ok) {
     fprintf(stderr, "Error during processing!\n");
     return 1;
